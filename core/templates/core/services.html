@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% block title %}Services — InData AI{% endblock %}
+{% block content %}
+<div class="page-hero">
+  <div class="section-tag">What We Build</div>
+  <h1>AI &amp; Data Services<br><span style="background:linear-gradient(135deg,var(--clr-accent),var(--clr-accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">That Actually Deliver</span></h1>
+  <p style="color:var(--clr-muted);font-size:1.1rem;max-width:560px;margin:.8rem auto 0;">
+    Every engagement is tailored to your specific needs, data landscape, and business goals.
+  </p>
+</div>
+
+<div class="section">
+  {% for item in services_list %}
+  <div style="display:grid;grid-template-columns:{% if forloop.counter|divisibleby:2 %}1fr 1fr{% else %}1fr 1fr{% endif %};gap:4rem;align-items:center;margin-bottom:5rem;{% if forloop.counter|divisibleby:2 %}direction:ltr;{% endif %}">
+    <div>
+      <div class="service-icon" style="width:64px;height:64px;font-size:1.8rem;margin-bottom:1.5rem;">{{ item.icon }}</div>
+      <div class="section-tag">0{{ forloop.counter }}</div>
+      <h2 style="margin-bottom:1rem;">{{ item.title }}</h2>
+      <p style="font-size:1.05rem;margin-bottom:1.5rem;">{{ item.desc }}</p>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;">
+        {% for point in item.points %}
+        <li style="display:flex;align-items:center;gap:.6rem;font-size:.95rem;color:var(--clr-muted);">
+          <span style="color:var(--clr-accent);">✓</span> {{ point }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div style="background:var(--clr-card);border:1px solid var(--clr-border);border-radius:var(--radius);padding:2.5rem;text-align:center;">
+      <div style="font-size:5rem;margin-bottom:1rem;">{{ item.icon }}</div>
+      <div style="font-family:var(--font-head);font-size:2rem;font-weight:700;color:var(--clr-accent);">{{ item.stat }}</div>
+      <div style="color:var(--clr-muted);font-size:.9rem;">{{ item.stat_label }}</div>
+    </div>
+  </div>
+  {% empty %}
+  <!-- fallback if context not set -->
+  {% endfor %}
+</div>
+
+<div class="cta-band">
+  <h2>Not Sure Where to Start?</h2>
+  <p>Our experts will help you identify the highest-value AI opportunities in your business.</p>
+  <a href="{% url 'contact' %}" class="btn btn-primary">Talk to an Expert ↗</a>
+</div>
+{% endblock %}

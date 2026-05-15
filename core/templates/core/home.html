@@ -1,0 +1,155 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span> Next-Generation AI Platform
+      </div>
+      <h1 class="hero-title">
+        Turn Your Data Into<br>
+        <span class="gradient-text">Competitive Advantage</span>
+      </h1>
+      <p class="hero-desc">
+        InData AI partners with forward-thinking companies to build machine learning systems, data platforms, and AI solutions that drive measurable results.
+      </p>
+      <div class="hero-actions">
+        <a href="{% url 'contact' %}" class="btn btn-primary">Start a Project ↗</a>
+        <a href="{% url 'services' %}" class="btn btn-outline">Our Services</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card hero-card-main">
+        <div style="font-size:.8rem;color:var(--clr-muted);margin-bottom:.8rem;letter-spacing:.08em;text-transform:uppercase;">Model Performance</div>
+        <div class="metric-row">
+          <div class="metric">
+            <div class="num">94%</div>
+            <div class="lbl">Accuracy</div>
+          </div>
+          <div class="metric">
+            <div class="num">2.1ms</div>
+            <div class="lbl">Latency</div>
+          </div>
+        </div>
+        <div class="mini-chart">
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+        <div style="font-size:.75rem;color:var(--clr-muted);margin-top:.6rem;">Revenue Prediction Model · Q1–Q3 2025</div>
+      </div>
+
+      <div class="hero-card hero-card-float">
+        <div style="font-size:.75rem;color:var(--clr-muted);margin-bottom:.5rem;">Live Accuracy</div>
+        <div style="font-family:var(--font-head);font-size:1.6rem;font-weight:800;color:var(--clr-accent);">+37%</div>
+        <div style="font-size:.75rem;color:var(--clr-muted);">vs. baseline model</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    {% for stat in stats %}
+    <div class="stat-item">
+      <div class="stat-num">{{ stat.number }}</div>
+      <div class="stat-lbl">{{ stat.label }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Services -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-tag">What We Do</div>
+    <h2 class="section-title">End-to-End AI &amp; Data Services</h2>
+    <p class="section-subtitle">From strategy to production — we build intelligent systems that scale with your business.</p>
+  </div>
+  <div class="services-grid">
+    {% for svc in services %}
+    <div class="service-card">
+      <div class="service-icon">
+        {% if svc.icon == 'brain' %}🧠
+        {% elif svc.icon == 'chart-bar' %}📊
+        {% elif svc.icon == 'cpu-chip' %}💡
+        {% elif svc.icon == 'cloud' %}☁️
+        {% elif svc.icon == 'shield-check' %}🛡️
+        {% else %}📈{% endif %}
+      </div>
+      <h3>{{ svc.title }}</h3>
+      <p>{{ svc.desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Testimonials -->
+<div class="testimonials-wrap">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-header">
+      <div class="section-tag">Client Stories</div>
+      <h2 class="section-title">Trusted by Industry Leaders</h2>
+      <p class="section-subtitle">Here's what our clients say about partnering with InData AI.</p>
+    </div>
+    <div class="testimonials-grid">
+      {% for t in testimonials %}
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">"{{ t.text }}"</p>
+        <div class="testi-author">
+          <div class="avatar">{{ t.avatar }}</div>
+          <div>
+            <div class="testi-name">{{ t.name }}</div>
+            <div class="testi-role">{{ t.role }}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Blog -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-tag">Insights</div>
+    <h2 class="section-title">From Our Research Team</h2>
+    <p class="section-subtitle">Latest thinking on AI, data engineering, and the future of intelligent systems.</p>
+  </div>
+  <div class="blog-grid">
+    {% for post in blog_posts %}
+    <div class="blog-card">
+      <div class="blog-thumb">
+        <span class="blog-thumb-icon">
+          {% if forloop.first %}🤖{% elif forloop.counter == 2 %}⚡{% else %}🔍{% endif %}
+        </span>
+      </div>
+      <div class="blog-body">
+        <span class="blog-tag">{{ post.tag }}</span>
+        <h3>{{ post.title }}</h3>
+        <p style="font-size:.9rem;">{{ post.excerpt }}</p>
+        <div class="blog-meta">📅 {{ post.date }}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="section-tag" style="margin:0 auto 1.5rem;">Let's Build Together</div>
+  <h2>Ready to Unlock Your Data's Potential?</h2>
+  <p>Tell us about your challenge and our team will get back to you within 24 hours.</p>
+  <a href="{% url 'contact' %}" class="btn btn-primary" style="font-size:1.05rem;padding:1rem 2.5rem;">
+    Book a Free Consultation ↗
+  </a>
+</div>
+
+{% endblock %}

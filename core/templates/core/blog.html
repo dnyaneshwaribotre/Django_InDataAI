@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% block title %}Blog — InData AI{% endblock %}
+{% block content %}
+<div class="page-hero">
+  <div class="section-tag">Knowledge Hub</div>
+  <h1>AI &amp; Data Insights</h1>
+  <p style="color:var(--clr-muted);font-size:1.1rem;max-width:560px;margin:.8rem auto 0;">
+    Practical guides, research breakdowns, and industry perspectives from our team of experts.
+  </p>
+</div>
+
+<div class="section">
+  <div class="blog-grid">
+    {% for post in posts %}
+    <div class="blog-card">
+      <div class="blog-thumb">
+        <span class="blog-thumb-icon">{{ post.icon }}</span>
+      </div>
+      <div class="blog-body">
+        <span class="blog-tag">{{ post.tag }}</span>
+        <h3>{{ post.title }}</h3>
+        <p style="font-size:.9rem;">{{ post.excerpt }}</p>
+        <div class="blog-meta">📅 {{ post.date }} · ⏱ {{ post.read_time }} min read</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
